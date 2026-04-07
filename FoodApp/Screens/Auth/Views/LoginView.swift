@@ -14,12 +14,11 @@ struct LoginView: View {
     @State private var phone: String = "90749742"
     @State private var password: String = "admin"
     @State private var goToSignup = false
-//    @State private var goToHome = false
-//    @State private var goToForgotPass = false
-    
-    @State private var errorMsg: String = ""
-    @State private var showAlert = false
 
+
+    @State private var alertShow: Bool = false
+    @State private var alertMsg: String = ""
+    
     @EnvironmentObject var navigationModel: NavigationModel
     @EnvironmentObject var rootModel: RootViewModel
     
@@ -64,6 +63,7 @@ struct LoginView: View {
                         
                         Button{
                             goToSignup = true
+                            //navigationModel.path.append(Route.signupView)
                         }label: {
                             Text("Signup")
                                 .foregroundStyle(.bar)
@@ -89,6 +89,9 @@ struct LoginView: View {
                 SignupView()
                     .navigationBarBackButtonHidden(true)
                     
+            }
+            .alert(isPresented: $alertShow) {
+                FoodApp.showAlert(title: "Message", message: alertMsg)
             }
         }
     }
@@ -123,8 +126,8 @@ struct LoginView: View {
                 self.callWebservice_login(phone: phone, password: pass)
                 
             }else{
-                errorMsg = response?.message ?? ""
-                showAlert = true
+                alertMsg = response?.message ?? ""
+                alertShow = true
             }
         }
     }
@@ -147,8 +150,8 @@ struct LoginView: View {
                // self.goToHome = true
                 rootModel.flow = .main
             }else{
-                errorMsg = response?.message ?? ""
-                showAlert = true
+                alertMsg = response?.message ?? ""
+                alertShow = true
             }
         }
     }

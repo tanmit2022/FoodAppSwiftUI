@@ -15,25 +15,15 @@ struct ContentView: View {
        
         NavigationStack(path: $navigationModel.path) {
             RootView()
-                
-//                .navigationDestination(for: Route.self) { screen in
-//                    RouteBuilder.build(screen, nav: navigationModel)
-//                }
-                .navigationDestination(type: Route.self, destination: {  screen in
-                    RouteBuilder.build(screen, nav: navigationModel, root: rootModel)
-                })
-//                .navigationDestination(for: Route.self) { screen in
-//                    RouteBuilder.build(screen, nav: navigationModel, root: rootModel)
-//                }
-//                .navigationDestination(for: Route.self) { screen in
-//                    let view = RouteBuilder.build(screen, nav: navigationModel, root: rootModel)
-//                    return AnyView(view)
-//                }
         }
         .environmentObject(navigationModel)
-            .environmentObject(rootModel)
-
-       
+        .environmentObject(rootModel)
+        .navigationDestination(for: Route.self) {  screen in
+            RouteBuilder.build(screen, nav: navigationModel, root: rootModel)
+        }
+//        .navigationDestination(type: Route.self, destination: {  screen in
+//            RouteBuilder.build(screen, nav: navigationModel, root: rootModel)
+//        })
     }
 }
 
@@ -66,13 +56,13 @@ struct RouteBuilder {
             switch route {
             case .signupView:
                 SignupView()
-                    .environmentObject(nav)
-                    .environmentObject(root)
+                   // .environmentObject(nav)
+                   // .environmentObject(root)
                 
             case .profileView:
                 ProfileView()
-                    .environmentObject(nav)
-                    .environmentObject(root)
+                   // .environmentObject(nav)
+                   // .environmentObject(root)
             }
         }
     }

@@ -22,9 +22,11 @@ struct SignupView: View {
     @State private var password: String = "admin"
     @State private var confirmPassword: String = "admin"
      
+ 
+    @State private var alertShowSucces: Bool = false
+    @State private var alertShowError: Bool = false
     @State private var alertMsg: String = ""
-    @State private var errorAlert = false
-    @State private var succesAlert = false
+    
 
     var body: some View {
         ZStack {
@@ -67,10 +69,11 @@ struct SignupView: View {
                 Spacer()
                 
             }.padding()
-        }.alert(isPresented: $errorAlert) {
+        }
+        .alert(isPresented: $alertShowError) {
             FoodApp.showAlert(title: "Message", message: alertMsg)
         }
-        .alert("Message", isPresented: $succesAlert) {
+        .alert("Message", isPresented: $alertShowSucces) {
             Button("Ok", role: .cancel) {
                 dismissView()
             }
@@ -100,10 +103,10 @@ struct SignupView: View {
                 rootModel.userModel = user
                 
                 alertMsg = response?.message ?? ""
-                succesAlert = true
+                alertShowSucces = true
             }else{
                 alertMsg = response?.message ?? ""
-                errorAlert = true
+                alertShowError = true
             }
             SVProgressHUD.dismiss()
         }

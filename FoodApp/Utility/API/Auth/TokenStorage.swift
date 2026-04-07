@@ -111,4 +111,10 @@ class TokenStorage {
             return false
         }
     }
+    static func clear(){
+        accessToken = ""
+        refreshToken = ""
+        expiryDate = ""
+    }
+
 }
