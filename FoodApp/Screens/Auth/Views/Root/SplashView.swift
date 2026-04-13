@@ -6,12 +6,15 @@
 //
 import SwiftUI
 import SVProgressHUD
+import Alamofire
+import SwiftyJSON
 
 struct SplashView: View {
     @EnvironmentObject var rootModel: RootViewModel
 
     var body: some View {
-        Text("Loading...")
+        Text("")
+            //.background(.red)
             .onAppear {
                 checkAuth()
             }
@@ -19,19 +22,45 @@ struct SplashView: View {
 
     func checkAuth() {
         Task {
-            try? await Task.sleep(nanoseconds: 1_000_000_000) // simulate API
-
+            //try? await Task.sleep(nanoseconds: 1_000_000_000) // simulate API
+                        
             if TokenStorage.validExpiryDate() {
                 // TODO: validate token via API
-                
                 callWebservice_getUserProfile()
+                
+            }else if TokenStorage.accessToken != "" {
+                callWebservice_refreshToken()
+                
             } else {
                 rootModel.flow = .auth
             }
         }
     }
     
-    
+    func callWebservice_refreshToken(){
+ 
+        SVProgressHUD.show()
+
+        APIManager.shared.requestWithParams(NetWorkingConstants.auth.refreshToken,method: .post,parameters: ["refresh": TokenStorage.refreshToken]) { json, response, error in
+            print("getUserProfile json: \(json)")
+            SVProgressHUD.dismiss()
+            
+            if response?.success == ServerCode.Success {
+                
+                let userData = json["user_data"].dictionaryValue
+                let refresh_token = userData["refresh"]?.stringValue
+                let token = userData["access"]?.stringValue
+                let expiresIn = userData["token_expires_in"]?.doubleValue ?? 0.0
+
+                TokenStorage.accessToken = token
+                TokenStorage.refreshToken = refresh_token
+                TokenStorage.expiryDate = "\(Date().addingTimeInterval(expiresIn).timeIntervalSince1970)"
+                callWebservice_getUserProfile()
+            }else{
+                rootModel.flow = .auth
+            }
+        }
+    }
     func callWebservice_getUserProfile(){
  
         SVProgressHUD.show()

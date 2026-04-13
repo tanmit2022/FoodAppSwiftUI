@@ -67,8 +67,23 @@ enum NetworkError: Error {
              case .failure(let error):
                  print("error \(error)")
 
-                 let wsResponse = WSResponse(code: response.response?.statusCode ?? 1009, success: "false", message: error.localizedDescription, jsonValue: JSON.null, isInternet: true)
-                 completion([],wsResponse,error as NSError?)
+                 if let data = response.data {
+                     do {
+                         let json = try JSON(data: data)
+                         
+                         print("error json:\(json)")
+
+                         let wsResponse = WSResponse(code: response.response?.statusCode ?? 1009, success: "false", message: json["message"].stringValue, jsonValue: json, isInternet: true)
+                         completion(json,wsResponse,error as NSError?)
+                         
+                     }catch {
+                         let wsResponse = WSResponse(code: response.response?.statusCode ?? 1009, success: "false", message: error.localizedDescription, jsonValue: JSON.null, isInternet: true)
+                         completion([],wsResponse,error as NSError?)
+                     }
+                 }else{
+                     let wsResponse = WSResponse(code: response.response?.statusCode ?? 1009, success: "false", message: error.localizedDescription, jsonValue: JSON.null, isInternet: true)
+                     completion([],wsResponse,error as NSError?)
+                 }
              }
          })
      }

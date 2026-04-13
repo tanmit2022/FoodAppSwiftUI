@@ -10,9 +10,9 @@ import Alamofire
 import SVProgressHUD
 
 struct ChangePasswordView: View {
-    @Environment(\.dismiss) var dismiss
+    //@Environment(\.dismiss) var dismiss
     
-    @EnvironmentObject var navigationModel: NavigationModel
+    @EnvironmentObject var navigationModel: ProfileNavigationModel
     @EnvironmentObject var rootModel: RootViewModel
 
     @State private var oldPass: String = "admin"
@@ -54,11 +54,13 @@ struct ChangePasswordView: View {
                     Text("Submit")
                         .fontWeight(.semibold)
                     
-                    
                 }.buttonStyle(CapsuleButtonStyle())
                     .padding(.top, 25)
                 Spacer()
-                
+                Button("Dismiss"){
+                    navigationModel.path.pop()
+                }
+                .foregroundStyle(.black)
             }.padding()
         }
         
@@ -67,9 +69,9 @@ struct ChangePasswordView: View {
         }
         .alert("Message", isPresented: $alertShowSucces) {
             Button("Ok", role: .cancel) {
-                dismiss()
                 TokenStorage.clear()
                 rootModel.flow = .auth
+                navigationModel.path.popToRoot()
             }
         } message: {
             Text(alertMsg)

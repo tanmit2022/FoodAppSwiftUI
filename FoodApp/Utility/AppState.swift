@@ -11,8 +11,6 @@ enum AppFlow {
     case splash
     case auth
     case main
-    case signup
-
 }
 //enum AppFlow {
 //    case splash
@@ -28,8 +26,11 @@ enum AppFlow {
 
 enum Route: Hashable, Codable {
     case profileView
-//    case changePasswordView
-//    case forgotPasswordView
-//    case resetPasswordView
+    case changePasswordView
+    case forgotPasswordView
+    case resetPasswordView(otp: String, phone: String)
     case signupView
 }
+
+ 
+

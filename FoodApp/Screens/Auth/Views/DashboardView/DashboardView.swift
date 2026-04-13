@@ -7,14 +7,24 @@
 import SwiftUI
 struct DashboardView: View {
  
-    
+    @EnvironmentObject var navigationModel: NavigationModel
+
     var body: some View {
-        TabView{
-            Tab("Home", image: , content: <#T##() -> Content#>)
+        TabView {
+            ProfileRootView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.circle")
+                    
+                }
+            HomeRootView1()
+                .tabItem {
+                    Label("Menu", systemImage: "house.fill")
+                }
+            
         }
     }
 }
-
+ 
 #Preview {
     DashboardView()
 }

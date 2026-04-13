@@ -7,23 +7,18 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @StateObject private var navigationModel = NavigationModel()
-    @StateObject private var rootModel = RootViewModel()
+//https://www.behance.net/gallery/234151789/Wagba-Food-Delivery-Mobile-App-UIUX-Design?utm_source=Pinterest&utm_medium=organic
 
+
+
+
+
+struct ContentView: View {
     var body: some View {
-       
-        NavigationStack(path: $navigationModel.path) {
-            RootView()
+        VStack{
+            Text("Home")
+            //RootView()
         }
-        .environmentObject(navigationModel)
-        .environmentObject(rootModel)
-        .navigationDestination(for: Route.self) {  screen in
-            RouteBuilder.build(screen, nav: navigationModel, root: rootModel)
-        }
-//        .navigationDestination(type: Route.self, destination: {  screen in
-//            RouteBuilder.build(screen, nav: navigationModel, root: rootModel)
-//        })
     }
 }
 
@@ -56,13 +51,18 @@ struct RouteBuilder {
             switch route {
             case .signupView:
                 SignupView()
-                   // .environmentObject(nav)
-                   // .environmentObject(root)
                 
             case .profileView:
                 ProfileView()
-                   // .environmentObject(nav)
-                   // .environmentObject(root)
+              
+            case .resetPasswordView(let otp, let phone):
+                ResetPasswordView(getOtp: otp, getPhone: phone)
+                
+            case .changePasswordView:
+                ChangePasswordView()
+                
+            case .forgotPasswordView:
+                ForgotPasswordView()
             }
         }
     }

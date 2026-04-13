@@ -98,7 +98,7 @@ private func refreshToken(completion: @escaping (Bool) -> Void) {
 
     let session = Session.default // 🚫 no interceptor
     let url = NetWorkingConstants.auth.refreshToken
-    let parameters: [String: Any] = ["refresh_token": refreshToken]
+    let parameters: [String: Any] = ["refresh": refreshToken]
     //print("parameters: \(parameters)")
 
     session.request(url,

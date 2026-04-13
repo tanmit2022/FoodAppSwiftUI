@@ -10,40 +10,38 @@ import Alamofire
 import SwiftyJSON
 
 struct RootView: View {
-    
-    @EnvironmentObject var navigationModel: NavigationModel
-    @EnvironmentObject var rootModel: RootViewModel
 
+    @StateObject private var navigationModel = NavigationModel()
+    @StateObject private var rootModel = RootViewModel()
     
     var body: some View {
-        
-        ZStack{
-            LinearGradient(
-                gradient: Gradient(colors: [.orange, .blue]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-            
-            switch rootModel.flow {
-            case .splash:
-                SplashView()
+ 
+        NavigationStack(path: $navigationModel.path) {
+            ZStack{
+                LinearGradient(
+                    gradient: Gradient(colors: [.orange, .blue]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
                 
-            case .auth:
-                AuthView()
+                switch rootModel.flow {
+                case .splash:
+                    SplashView()
                     
-            //case .main(let role):
-            case .main:
-                ProfileView()
+                case .auth:
+                    AuthView()
+                    
+                case .main:
+                    DashboardView()
+                }
                 
-            case .signup:
-                SignupView()
+            }
+            .navigationDestination(for: Route.self) {  screen in
+                RouteBuilder.build(screen, nav: navigationModel, root: rootModel)
             }
         }
-        
-//        .navigationDestination(type: Route.self, destination: {
-//            screen in
-//            RouteBuilder.build(screen, nav: navigationModel)
-//        })
+        .environmentObject(navigationModel)
+        .environmentObject(rootModel)
     }
 }

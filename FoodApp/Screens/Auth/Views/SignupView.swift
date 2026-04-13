@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 struct SignupView: View {
-    @Environment(\.dismiss) var dismiss
+   // @Environment(\.dismiss) var dismiss
     @EnvironmentObject var navigationModel: NavigationModel
     @EnvironmentObject var rootModel: RootViewModel
 
@@ -61,12 +61,13 @@ struct SignupView: View {
                         .fontWeight(.semibold)
                     
                 }.buttonStyle(CapsuleButtonStyle())
+                Spacer()
                 Button("Dismiss"){
-                    dismiss()
+                    dismissView()
                 }
                 .foregroundStyle(.black)
                 
-                Spacer()
+               
                 
             }.padding()
         }
@@ -113,8 +114,8 @@ struct SignupView: View {
     }
     private func dismissView(){
         DispatchQueue.main.async {
-            dismiss()
             rootModel.flow = .auth
+            navigationModel.path.pop()
         }
     }
 }

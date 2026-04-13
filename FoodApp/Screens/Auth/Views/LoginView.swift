@@ -13,8 +13,6 @@ import SwiftyJSON
 struct LoginView: View {
     @State private var phone: String = "90749742"
     @State private var password: String = "admin"
-    @State private var goToSignup = false
-
 
     @State private var alertShow: Bool = false
     @State private var alertMsg: String = ""
@@ -48,7 +46,8 @@ struct LoginView: View {
                     HStack{
                         Spacer()
                         Button{
-
+                            navigationModel.path.append(Route.forgotPasswordView)
+                           // goToForgot = true
                         }label: {
                             Text("Forgot Password?")
                                 .foregroundStyle(.bar)
@@ -62,8 +61,8 @@ struct LoginView: View {
                         Text("New User?")
                         
                         Button{
-                            goToSignup = true
-                            //navigationModel.path.append(Route.signupView)
+                            navigationModel.path.append(Route.signupView)
+
                         }label: {
                             Text("Signup")
                                 .foregroundStyle(.bar)
@@ -85,11 +84,7 @@ struct LoginView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            .navigationDestination(isPresented: $goToSignup) {
-                SignupView()
-                    .navigationBarBackButtonHidden(true)
-                    
-            }
+
             .alert(isPresented: $alertShow) {
                 FoodApp.showAlert(title: "Message", message: alertMsg)
             }

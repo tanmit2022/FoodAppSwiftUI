@@ -12,3 +12,8 @@ class NavigationModel: ObservableObject {
 
     @Published var path = NavigationPath()
 }
+
+
+class ProfileNavigationModel: ObservableObject {
+    @Published var path = NavigationPath()
+}
