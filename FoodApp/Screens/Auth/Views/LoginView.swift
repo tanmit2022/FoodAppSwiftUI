@@ -86,7 +86,7 @@ struct LoginView: View {
             .padding(.horizontal)
 
             .alert(isPresented: $alertShow) {
-                FoodApp.showAlert(title: "Message", message: alertMsg)
+                UtzoSwiftUI.showAlert(title: "Message", message: alertMsg)
             }
         }
     }

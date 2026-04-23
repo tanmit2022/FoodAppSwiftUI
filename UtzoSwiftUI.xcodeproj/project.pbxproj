@@ -13,7 +13,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E1F366622F785119000E8B56 /* FoodApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1F366622F785119000E8B56 /* UtzoSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UtzoSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -49,7 +49,7 @@
 		E1F366632F785119000E8B56 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E1F366622F785119000E8B56 /* FoodApp.app */,
+				E1F366622F785119000E8B56 /* UtzoSwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,9 +57,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E1F366612F785119000E8B56 /* FoodApp */ = {
+		E1F366612F785119000E8B56 /* UtzoSwiftUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E1F366702F78511B000E8B56 /* Build configuration list for PBXNativeTarget "FoodApp" */;
+			buildConfigurationList = E1F366702F78511B000E8B56 /* Build configuration list for PBXNativeTarget "UtzoSwiftUI" */;
 			buildPhases = (
 				E1F3665E2F785119000E8B56 /* Sources */,
 				E1F3665F2F785119000E8B56 /* Frameworks */,
@@ -72,14 +72,14 @@
 			fileSystemSynchronizedGroups = (
 				E1F366642F785119000E8B56 /* FoodApp */,
 			);
-			name = FoodApp;
+			name = UtzoSwiftUI;
 			packageProductDependencies = (
 				E18502782F79158A00436477 /* Alamofire */,
 				E1DDF6612F791F9100FE0402 /* SwiftyJSON */,
 				E1DDF6642F791FA500FE0402 /* SVProgressHUD */,
 			);
 			productName = FoodApp;
-			productReference = E1F366622F785119000E8B56 /* FoodApp.app */;
+			productReference = E1F366622F785119000E8B56 /* UtzoSwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -97,7 +97,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E1F3665D2F785119000E8B56 /* Build configuration list for PBXProject "FoodApp" */;
+			buildConfigurationList = E1F3665D2F785119000E8B56 /* Build configuration list for PBXProject "UtzoSwiftUI" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -116,7 +116,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E1F366612F785119000E8B56 /* FoodApp */,
+				E1F366612F785119000E8B56 /* UtzoSwiftUI */,
 			);
 		};
 /* End PBXProject section */
@@ -322,7 +322,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E1F3665D2F785119000E8B56 /* Build configuration list for PBXProject "FoodApp" */ = {
+		E1F3665D2F785119000E8B56 /* Build configuration list for PBXProject "UtzoSwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E1F3666E2F78511B000E8B56 /* Debug */,
@@ -331,7 +331,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E1F366702F78511B000E8B56 /* Build configuration list for PBXNativeTarget "FoodApp" */ = {
+		E1F366702F78511B000E8B56 /* Build configuration list for PBXNativeTarget "UtzoSwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E1F366712F78511B000E8B56 /* Debug */,

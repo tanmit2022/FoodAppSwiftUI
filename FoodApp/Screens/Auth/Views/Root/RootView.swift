@@ -18,20 +18,16 @@ struct RootView: View {
  
         NavigationStack(path: $navigationModel.path) {
             ZStack{
-                LinearGradient(
-                    gradient: Gradient(colors: [.orange, .blue]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .ignoresSafeArea()
+                bgSplashLogo
                 
                 switch rootModel.flow {
                 case .splash:
                     SplashView()
                     
                 case .auth:
-                    AuthView()
-                    
+                    //AuthView()
+                    DashboardView()
+
                 case .main:
                     DashboardView()
                 }
@@ -44,4 +40,15 @@ struct RootView: View {
         .environmentObject(navigationModel)
         .environmentObject(rootModel)
     }
+}
+var bgSplashLogo: some View {
+    ZStack {
+        LinearGradient(colors: [Color(hex: "BAEEFC"),Color(hex: "A7DBFF"),Color(hex: "A9C5F3")], startPoint: .top, endPoint: .bottom)
+         Image("logoSplash")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .clipped()
+            .frame(maxHeight: .infinity)
+    }
+    .ignoresSafeArea()
 }

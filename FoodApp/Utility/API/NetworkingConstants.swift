@@ -18,18 +18,19 @@ struct APISettings {
 
 
 //---API---
-let LOCAL_DOMAIN = "127.0.0.1:8000"//
+let LOCAL_DOMAIN = "192.168.1.200"//
 struct APIs {
     static let PRODUCTION = "https://www.utzo.com/"//Production
-    static let DEVELOPMENT = "http://\(LOCAL_DOMAIN)/"//Development
+    static let DEVELOPMENT = "http://\(LOCAL_DOMAIN)/pickedin.com/"//Development
 }
+ 
 
 
-var MAIN_BASE =   APISettings.API_BASE_URL + "api/v1/"
-
+var MAIN_BASE =   APISettings.API_BASE_URL + "api/customer?"
 
 struct NetWorkingConstants {
-    
+    static var MAIN_BASE =   APISettings.API_BASE_URL + "api/customer?"
+
     struct account {
         static let signup = MAIN_BASE + "signup/"
         static let login = MAIN_BASE + "login/"
@@ -46,5 +47,7 @@ struct NetWorkingConstants {
         static let accessToken = MAIN_BASE + "token/"
         static let refreshToken = MAIN_BASE + "token-refresh/"
     }
+    
+    
 }
 

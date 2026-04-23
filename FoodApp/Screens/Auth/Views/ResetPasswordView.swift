@@ -68,7 +68,7 @@ struct ResetPasswordView: View {
         }
         
         .alert(isPresented: $alertShow) {
-            FoodApp.showAlert(title: "Error", message: errorMsg)
+            UtzoSwiftUI.showAlert(title: "Error", message: errorMsg)
         }
     }
     func callWebservice_resetPass(){

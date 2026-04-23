@@ -1,5 +1,5 @@
 //
-//  DashboradService.swift
+//  DashboradServiceModel.swift
 //  UtzoSwiftUI
 //
 //  Created by Amit on 23/04/26.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct DashboradService: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+ 
+class DashboradServiceModel: Identifiable, ObservableObject {
+    let id = UUID()
+    @Published var name: String = ""
 
-#Preview {
-    DashboradService()
+    init(name: String) {
+        self.name = name
+    }
 }

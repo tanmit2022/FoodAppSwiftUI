@@ -72,7 +72,7 @@ struct SignupView: View {
             }.padding()
         }
         .alert(isPresented: $alertShowError) {
-            FoodApp.showAlert(title: "Message", message: alertMsg)
+            UtzoSwiftUI.showAlert(title: "Message", message: alertMsg)
         }
         .alert("Message", isPresented: $alertShowSucces) {
             Button("Ok", role: .cancel) {

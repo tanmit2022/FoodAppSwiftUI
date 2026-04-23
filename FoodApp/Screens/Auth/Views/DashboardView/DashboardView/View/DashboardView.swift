@@ -6,68 +6,58 @@
 //
 import SwiftUI
 struct DashboardView: View {
- 
+    
     @EnvironmentObject var navigationModel: NavigationModel
-
+    
     @State private var txtSerach: String = ""
     
-    let ary = ["Plumbing Repair","Plumbing Services","Water Heater","Toilet"]
+    let ary = [DashboradServiceModel(name: "Plumbing Repair"),
+               DashboradServiceModel(name: "Plumbing Services"),
+               DashboradServiceModel(name: "Water Heater"),
+               DashboradServiceModel(name: "Toilet"),
+    ]
+    
     
     var body: some View {
-        VStack(spacing:0){
+        VStack(){
             BrandedNavBar()
-            VStack(spacing:20){
-                //Serach view
-                searchView
-
-                ScrollView {
+            
+            //Serach view
+            searchView
+            GeometryReader { proxy in
+                let screenWidth = proxy.size.width
+                let gridHeight = screenWidth / 2.2
+                
+                ScrollView{
+                    
                     VStack{
                         HStack{
                             Text("Plumbing Services")
-                                .fontWeight(.semibold)
-                                .font(.headline)
+                            //.fontWeight(.semibold)
+                                .font(.system(size: 14,weight: .medium))
+                                .foregroundStyle(.black)
                             Spacer()
                         }
-                        
-                        ServiceCardView(imageName: "Dish Washer",name: "Plumbing Services")
-                        
-                        
-                        
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 16) {
-                                ForEach(0..<ary.enumerated()) { i in
+                        VStack(spacing: 12){
+                            ServiceCardView(imageName: "Dish Washer",name: "Plumbing Services",size: CGSize(width: screenWidth , height: gridHeight))
+                            
+                            ScrollView(.horizontal) {
+                                HStack(spacing: 12) {
                                     
-                                    let name = ary[i]
-                                    ServiceCardView(imageName: name,name: name)
-                                        .frame(width: 120, height: 100)
-                                        .background(Color.green.opacity(0.3))
-                                        .cornerRadius(12)
+                                    ForEach(ary) { item in
+                                        
+                                        ServiceCardView(imageName: item.name,name: item.name,size: CGSize(width: gridHeight, height: gridHeight))
+                                            .frame(width: gridHeight)
+                                    }
                                 }
                             }
-                            .padding()
-                            
                         }
                     }
-                    
-   
-                    
                 }
- 
-                //Spacer()
-            } .padding()
+            }
+            .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         }
-//        TabView {
-//            ProfileRootView()
-//                .tabItem {
-//                    Label("Profile", systemImage: "person.circle")
-//                }
-//            HomeRootView1()
-//                .tabItem {
-//                    Label("Menu", systemImage: "house.fill")
-//                }
-//        }
     }
-    
     
     
     var searchView: some View {
@@ -88,12 +78,12 @@ struct DashboardView: View {
                     .fill(Color.white)
                     .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0.3, y: 0)
             )
-          //  .padding(.top,5)
+            .padding()
     }
-       
+    
     
 }
- 
+
 #Preview {
     DashboardView()
 }

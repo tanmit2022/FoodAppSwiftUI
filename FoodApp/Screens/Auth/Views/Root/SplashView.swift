@@ -13,10 +13,15 @@ struct SplashView: View {
     @EnvironmentObject var rootModel: RootViewModel
 
     var body: some View {
-        Text("")
-            //.background(.red)
+        ZStack{
+            bgSplashLogo
+            VStack{
+                BrandedNavBar()
+                Spacer()
+            }
+        }
             .onAppear {
-                checkAuth()
+                //checkAuth()
             }
     }
 
@@ -62,9 +67,10 @@ struct SplashView: View {
         }
     }
     func callWebservice_getUserProfile(){
- 
+        let parama: [String: String] = ["func": "user_profile"]
+
         SVProgressHUD.show()
-        APIManager.shared.requestWithParams(NetWorkingConstants.account.getUserProfile,method: .get) { json, response, error in
+        APIManager.shared.requestWithParams(NetWorkingConstants.MAIN_BASE,method: .post,parameters: parama) { json, response, error in
             print("getUserProfile json: \(json)")
             SVProgressHUD.dismiss()
             
@@ -79,4 +85,8 @@ struct SplashView: View {
             }
         }
     }
+}
+
+#Preview {
+    SplashView()
 }

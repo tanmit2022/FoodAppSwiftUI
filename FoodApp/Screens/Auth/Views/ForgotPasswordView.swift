@@ -65,7 +65,7 @@ struct ForgotPasswordView: View {
 //                    .navigationBarBackButtonHidden()
 //            }
             .alert(isPresented: $alertShow) {
-                FoodApp.showAlert(title: "Error", message: errorMsg)
+                UtzoSwiftUI.showAlert(title: "Error", message: errorMsg)
             }
        
     }

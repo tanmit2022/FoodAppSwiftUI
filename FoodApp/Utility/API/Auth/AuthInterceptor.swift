@@ -129,6 +129,7 @@ private func refreshToken(completion: @escaping (Bool) -> Void) {
                 completion(true)
                 
             case .failure(let error):
+                debugPrint(error.localizedDescription)
                 completion(false)
             }
         }

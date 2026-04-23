@@ -8,11 +8,55 @@
 import SwiftUI
 
 struct BrandedNavBar: View {
+    
+ 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+        HStack {
+            HStack{
+                Button(action: {
+                    // back action
+                }) {
+                    Image(systemName: "line.3.horizontal")
+                        .font(.title)
+                }
 
+                Image("logoSplash")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.white, lineWidth: 1)
+                    )
+                    .shadow(radius: 10)
+            }
+
+            Spacer()
+
+            HStack{
+                Button(action: {
+                    // right action
+                }) {
+                    Image(systemName: "cart")
+                        .font(.title2)
+                }
+                Button(action: {
+                    // right action
+                }) {
+                    Image(systemName: "bell")
+                        .font(.title2)
+
+                }
+            }
+        }
+        .padding(8)
+        .background(Color.black)
+        .foregroundColor(.white)
+       
+
+    }
+
+}
 #Preview {
     BrandedNavBar()
 }
